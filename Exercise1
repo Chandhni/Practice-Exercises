@@ -1,0 +1,20 @@
+library("datasets")
+library("rvest")
+library("xml2")
+cnt<- 0
+woman_df <- women
+height_mean <- mean(woman_df$height)
+weight_mean <- mean(woman_df$weight)
+for(i in 1:nrow(woman_df))
+{
+if(woman_df$height[i]>height_mean & woman_df$weight[i]<weight_mean)
+{
+  cnt<-cnt +1
+}
+}
+print("The number of women are")
+print(cnt)
+
+data_req<- read_html("http://www.worldatlas.com/articles/the- biggest-cities-in-india.html")
+View(data_req)
+input_df<- data.frame(data_req$cities,data_req$population)
