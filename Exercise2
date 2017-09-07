@@ -1,0 +1,13 @@
+file<-read_html("https://en.wikipedia.org/wiki/India%E2%80%93Pakistan_cricket_rivalry")
+tables<-html_nodes(file, "table")
+table1 <- html_table(tables[3], fill = TRUE)
+View(table1)
+table2 <- as.data.frame(table1)
+View(table2)
+totalwins=0 
+for(i in 1:nrow(table2))
+{
+  totalwins <- totalwins+table2$India[i]
+}
+print(paste('India won'))
+print(totalwins)
